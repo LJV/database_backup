@@ -2,15 +2,15 @@ module LJV
   class DatabaseBackup
 
     def initialize(config)
-      @db_name = config[:db_name] || raise StandardError, "You must specify a database"
-      @db_username = config[:db_username] || raise StandardError, "You must specify a database username"
-      @db_password = config[:db_password] || raise StandardError, "You must specify a database password"
-      @backup_dir = config[:backup_dir] || raise StandardError, "You must specify a backup dir"
+      @db_name = config[:db_name] || (raise StandardError, "You must specify a database")
+      @db_username = config[:db_username] || (raise StandardError, "You must specify a database username")
+      @db_password = config[:db_password] || (raise StandardError, "You must specify a database password")
+      @backup_dir = config[:backup_dir] || (raise StandardError, "You must specify a backup dir")
       @num_backups = config[:num_backups] || 2
     end
 
     def backup!
-      FileUtils.mkdir_p(backup_folder)
+      FileUtils.mkdir_p(@backup_dir)
       `mysqldump -u #{@db_username} -p#{@db_password} -Q --add-drop-table --add-locks=FALSE --single-transaction --skip-lock-tables #{@db_name} | gzip -c > #{backup_filepath}`
       puts "Created backup: #{backup_filepath}"
       return backup_filepath
