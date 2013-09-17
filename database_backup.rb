@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module LJV
   class DatabaseBackup
 
