@@ -6,4 +6,5 @@ Gem::Specification.new do |s|
   s.files       = ["lib/database_backup.rb"]
   s.summary     = "Rotate dumps of MySQL databases"
   s.license       = 'MIT'
+  s.add_dependency 'escape'
 end

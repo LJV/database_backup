@@ -13,7 +13,7 @@ module LJV
 
     def backup!
       FileUtils.mkdir_p(@backup_dir)
-      `mysqldump -u #{@db_username} -p#{@db_password} -Q --add-drop-table --add-locks=FALSE --single-transaction --skip-lock-tables #{@db_name} | gzip -c > #{backup_filepath}`
+      `mysqldump -u #{@db_username} -p#{Escape.shell_escape_word(@db_password)} -Q --add-drop-table --add-locks=FALSE --single-transaction --skip-lock-tables #{@db_name} | gzip -c > #{backup_filepath}`
       return backup_filepath
     end
 
