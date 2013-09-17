@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'escape'
 
 module LJV
   class DatabaseBackup
