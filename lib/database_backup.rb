@@ -1,3 +1,7 @@
+# Note: 
+# Some of this backup code was originally inspired and copied from a rake task written by
+# Craig Ambrose: http://www.craigambrose.com/blog/2007/03/01/a-rake-task-for-database-backups/
+
 require 'fileutils'
 require 'escape'
 
